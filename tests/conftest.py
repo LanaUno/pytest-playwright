@@ -8,11 +8,11 @@ from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from pages.signup_page import SignUpPage
 from pages.account_page import AccountPage
-
+import pytest
 
 @pytest.fixture()
 def get_webdriver_chrome(playwright: Playwright):
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
     page = context.new_page()
     page.goto(os.getenv("BASE_URL"))
