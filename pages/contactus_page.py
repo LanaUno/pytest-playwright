@@ -32,7 +32,7 @@ class ContactUsPage:
         self.__contactus_message.fill(Data.message)
 
     def upload_files(self):
-        self.page.set_input_files('input[name="upload_file"]', Data.file_path)
+        self.page.locator('input[name="upload_file"]').set_input_files(Data.file_path)
 
     def click_contactus_submit_btn(self):
         self.__contactus_submit_btn.click()
