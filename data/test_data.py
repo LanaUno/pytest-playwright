@@ -20,8 +20,7 @@ class Data:
     name = fake.name()
     subj = fake.word()
     message = fake.word()
-    file_path = 'img.jpg'
     product_name = 'cotton'
     first_product_url = "https://www.automationexercise.com/product_details/1"
-    current_working_dir = os.getcwd()
-    # file_path = os.path.join(current_working_dir, 'data\\img.jpg')
+
+
