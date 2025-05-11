@@ -32,7 +32,7 @@ class ContactUsPage:
         self.__contactus_message.fill(Data.message)
 
     def upload_files(self):
-        self.page.locator('input[name="upload_file"]').set_input_files('../data/img.jpg')
+        # self.page.locator('input[name="upload_file"]').set_input_files('../data/img.jpg')
         with self.page.expect_file_chooser() as fc_info:
             self.page.locator('input[name="upload_file"]').click()
             file_chooser = fc_info.value
