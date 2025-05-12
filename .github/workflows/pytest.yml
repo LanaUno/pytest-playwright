@@ -27,7 +27,6 @@ jobs:
       uses: simple-elf/allure-report-action@master
       if: always()
       id: allure-report
-      run: allure serve results
       with:
         allure_results: reports
         gh_pages: gh-pages
