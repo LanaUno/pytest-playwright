@@ -17,7 +17,7 @@ jobs:
     - name: Ensure browsers are installed
       run: python -m playwright install --with-deps
     - name: Run tests
-      run: pytest allure serve results
+      run: pytest --alluredir results && allure serve results
       env:
         BASE_URL: ${{ secrets.BASE_URL }}
         MY_EMAIL: ${{ secrets.MY_EMAIL }}
