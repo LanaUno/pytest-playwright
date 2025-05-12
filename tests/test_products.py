@@ -6,6 +6,12 @@ from data.test_data import Data
 
 
 def test_verify_all_products_and_product_detail_page(get_webdriver_chrome):
+    """
+    Test to verify product page and products list details download and seen properly
+
+    :param get_webdriver_chrome:
+    :return: None
+    """
     page = get_webdriver_chrome
     home_page = HomePage(page)
     products_page = ProductsPage(page)
@@ -24,6 +30,12 @@ def test_verify_all_products_and_product_detail_page(get_webdriver_chrome):
 
 
 def test_search_product(get_webdriver_chrome):
+    """
+    Test to verify products search works properly
+
+    :param get_webdriver_chrome:
+    :return: products list
+    """
     page = get_webdriver_chrome
     home_page = HomePage(page)
     products_page = ProductsPage(page)

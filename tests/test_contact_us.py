@@ -4,6 +4,13 @@ from pages.contactus_page import ContactUsPage
 
 
 def test_contact_us_form(page: Page):
+    """
+    Test to verify to leave data and download file  via
+    Contact Us form are possible
+
+    :param page:
+    :return: None
+    """
     home_page = HomePage(page)
     contactus_page = ContactUsPage(page)
 

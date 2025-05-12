@@ -4,6 +4,12 @@ from pages.account_page import AccountPage
 
 
 def test_login_user_with_correct_email_and_password(signup_and_logout_real_user):
+    """
+    Test to verify a user can log in with correct credentials
+
+    :param signup_and_logout_real_user:
+    :return: None
+    """
     page = signup_and_logout_real_user
     login_page = LoginPage(page)
     account_page = AccountPage(page)
@@ -15,6 +21,12 @@ def test_login_user_with_correct_email_and_password(signup_and_logout_real_user)
 
 
 def test_login_user_with_incorrect_email_and_password(get_webdriver_chrome):
+    """
+    Test to verify a user can't log in with incorrect credentials
+
+    :param get_webdriver_chrome:
+    :return: None
+    """
     page = get_webdriver_chrome
     home_page = HomePage(page)
     login_page = LoginPage(page)

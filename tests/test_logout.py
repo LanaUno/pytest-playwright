@@ -3,6 +3,12 @@ from pages.account_page import AccountPage
 
 
 def test_logout_user(signup_and_logout_real_user):
+    """
+    Test to verify a user can log out successfully
+
+    :param signup_and_logout_real_user:
+    :return: None
+    """
     page = signup_and_logout_real_user
     login_page = LoginPage(page)
     account_page = AccountPage(page)
