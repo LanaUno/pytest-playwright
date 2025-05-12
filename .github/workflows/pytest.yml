@@ -57,6 +57,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1.2.9
+        with:
+          PERSONAL_TOKEN: ${{ secrets.PAT_TOKEN }}
 
 #    - name: Get Allure history
 #      uses: actions/checkout@v2
