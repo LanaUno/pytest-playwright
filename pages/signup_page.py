@@ -4,6 +4,7 @@ import os
 import dotenv
 dotenv.load_dotenv()
 
+
 class SignUpPage:
 
     def __init__(self, page: Page):

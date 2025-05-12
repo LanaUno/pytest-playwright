@@ -1,6 +1,8 @@
 from playwright.sync_api import expect, Page
 from data.test_data import Data
 import re
+from utils.tools import take_screenshot
+
 
 class ProductsPage:
     def __init__(self, page: Page):
@@ -21,6 +23,7 @@ class ProductsPage:
 
     def verify_products_heading(self):
         expect(self.__products_heading ).to_be_visible()
+        take_screenshot(self.page, "verify_products_heading")
 
     def verify_products_list(self):
         expect(self.__products_list).to_be_visible()
@@ -54,6 +57,7 @@ class ProductsPage:
 
     def verify_search_products_heading(self):
         expect(self.__search_products_heading).to_be_visible()
+        take_screenshot(self.page, "search_products_heading")
 
     def verify_search_products_list(self):
         texts = self.__search_products_list.all_inner_texts()

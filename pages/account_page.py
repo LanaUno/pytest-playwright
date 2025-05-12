@@ -1,4 +1,5 @@
 from playwright.sync_api import expect, Page
+from utils.tools import take_screenshot
 
 class AccountPage:
 
@@ -11,6 +12,7 @@ class AccountPage:
 
     def verify_account_name(self):
         expect(self.__account_username).to_be_visible()
+        take_screenshot(self.page, "username_visible")
 
     def click_delete_account_link(self):
         self.__delete_account_link.click()

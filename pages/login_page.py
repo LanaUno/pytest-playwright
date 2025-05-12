@@ -3,6 +3,7 @@ from data.test_data import Data
 import os
 import dotenv
 dotenv.load_dotenv()
+from utils.tools import take_screenshot
 
 
 class LoginPage:
@@ -48,6 +49,8 @@ class LoginPage:
 
     def verify_incorrect_cred_error_message(self):
         expect(self.__incorrect_cred_error_message).to_be_visible()
+        take_screenshot(self.page, "incorrect_cred_error_message")
 
     def verify_existing_email_error_message(self):
         expect(self.__existing_email_error_message).to_be_visible()
+        take_screenshot(self.page, "existing_email_error_message")

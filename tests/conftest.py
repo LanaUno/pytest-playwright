@@ -1,14 +1,13 @@
 import os
 import dotenv
 dotenv.load_dotenv()
-
-
 from playwright.sync_api import Playwright, Page
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from pages.signup_page import SignUpPage
 from pages.account_page import AccountPage
 import pytest
+
 
 @pytest.fixture()
 def get_webdriver_chrome(playwright: Playwright):

@@ -3,6 +3,7 @@ from data.test_data import Data
 import os
 import dotenv
 dotenv.load_dotenv()
+from utils.tools import take_screenshot
 
 class HomePage:
 
@@ -47,3 +48,4 @@ class HomePage:
 
     def verify_subscribe_success_msg(self):
         expect(self.__subscribe_success_msg).to_be_visible()
+        take_screenshot(self.page, "subscribe_success")

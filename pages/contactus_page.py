@@ -1,5 +1,6 @@
 from playwright.sync_api import expect, Page
 from data.test_data import Data
+from utils.tools import take_screenshot
 
 class ContactUsPage:
 
@@ -36,6 +37,7 @@ class ContactUsPage:
             self.page.locator('input[name="upload_file"]').click()
             file_chooser = fc_info.value
             file_chooser.set_files("./data/img.jpg")
+            take_screenshot(self.page, "upload_file")
 
 
     def click_contactus_submit_btn(self):
@@ -43,6 +45,7 @@ class ContactUsPage:
 
     def verify_success_text(self):
         expect(self.__success_text).to_be_visible()
+        take_screenshot(self.page, "success_text")
 
     def click_success_btn(self):
         self.__success_btn.click()
