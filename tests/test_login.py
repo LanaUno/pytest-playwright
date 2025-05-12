@@ -1,6 +1,7 @@
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from pages.account_page import AccountPage
+import pytest
 
 
 def test_login_user_with_correct_email_and_password(signup_and_logout_real_user):
@@ -20,7 +21,13 @@ def test_login_user_with_correct_email_and_password(signup_and_logout_real_user)
     account_page.verify_account_deleted()
 
 
-def test_login_user_with_incorrect_email_and_password(get_webdriver_chrome):
+@pytest.mark.parametrize('creds',
+    [
+        ('auto@auto.com', '123test'),
+        ('auto@admin.com', 'auto123test')
+        ]
+    )
+def test_login_user_with_incorrect_email_and_password(get_webdriver_chrome, creds):
     """
     Test to verify a user can't log in with incorrect credentials
 
@@ -33,5 +40,5 @@ def test_login_user_with_incorrect_email_and_password(get_webdriver_chrome):
 
     home_page.click_signup_login_btn()
     login_page.verify_user_login_text()
-    login_page.login_with_incorrect_cred()
+    login_page.login_with_incorrect_cred(creds)
     login_page.verify_incorrect_cred_error_message()

@@ -24,6 +24,7 @@ class HomePage:
 
     def check_home_link_visible(self):
         expect(self.__home_link).to_be_visible()
+        take_screenshot(self.page, "home_link_visible")
 
     def click_signup_login_btn(self):
         self.__signup_login_btn.click()

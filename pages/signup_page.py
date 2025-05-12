@@ -3,6 +3,7 @@ from data.test_data import Data
 import os
 import dotenv
 dotenv.load_dotenv()
+from utils.tools import take_screenshot
 
 
 class SignUpPage:
@@ -32,6 +33,7 @@ class SignUpPage:
 
     def verify_heading_text_is(self):
         expect(self.__enter_account_text).to_be_visible()
+        take_screenshot(self.page, "heading_text")
 
     def click_continue_btn(self):
         self.__continue_btn.click()

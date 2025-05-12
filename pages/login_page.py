@@ -3,6 +3,7 @@ from data.test_data import Data
 import os
 import dotenv
 dotenv.load_dotenv()
+import pytest
 from utils.tools import take_screenshot
 
 
@@ -23,6 +24,7 @@ class LoginPage:
 
     def verify_new_user_signup_text(self):
         expect(self.__new_user_sighup_text).to_be_visible()
+        take_screenshot(self.page, "new_user_signup_text")
 
     def sign_up(self):
         self.__user_name.fill(Data.f_name)
@@ -36,15 +38,17 @@ class LoginPage:
 
     def verify_user_login_text(self):
         expect(self.__user_login_text).to_be_visible()
+        take_screenshot(self.page, "user_login_text")
 
     def login(self):
         self.__login_user_email.fill(os.getenv("MY_EMAIL"))
         self.__login_user_password.fill(os.getenv("MY_PASS"))
         self.__login_btn.click()
 
-    def login_with_incorrect_cred(self):
-        self.__login_user_email.fill(Data.email)
-        self.__login_user_password.fill(Data.password)
+    def login_with_incorrect_cred(self, creds):
+        email, passw = creds
+        self.__login_user_email.fill(email)
+        self.__login_user_password.fill(passw)
         self.__login_btn.click()
 
     def verify_incorrect_cred_error_message(self):

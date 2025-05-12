@@ -19,6 +19,7 @@ class AccountPage:
 
     def verify_account_deleted(self):
         expect(self.__account_deleted_msg).to_be_visible()
+        take_screenshot(self.page, "account_deleted")
 
     def click_logout_link(self):
         self.__logout_link.click()

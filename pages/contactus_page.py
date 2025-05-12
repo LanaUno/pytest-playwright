@@ -19,6 +19,7 @@ class ContactUsPage:
 
     def verify_get_in_touch_heading(self):
         expect(self.__get_in_touch_heading).to_be_visible()
+        take_screenshot(self.page, "get_in_touch_heading")
 
     def fill_contactus_name(self):
         self.__contactus_name.fill(Data.name)

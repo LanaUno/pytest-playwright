@@ -27,12 +27,14 @@ class ProductsPage:
 
     def verify_products_list(self):
         expect(self.__products_list).to_be_visible()
+        take_screenshot(self.page, "products_list")
 
     def click_first_product_view_btn(self):
         self.__first_product_view_btn.click()
 
     def verify_first_product_name(self):
         expect(self.__first_product_name).to_be_visible()
+        take_screenshot(self.page, "first_product_name")
 
     def verify_first_product_category(self):
         expect(self.__first_product_category).to_be_visible()

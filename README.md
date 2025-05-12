@@ -1,6 +1,6 @@
 ## Automated Web Testing with Playwright and Pytest
 
-This project focuses on automating testing of a web application https://www.automationexercise.com/using
+This project focuses on automating testing of the web application https://www.automationexercise.com/using
 Playwright and Pytest. The main goal is to ensure that the functionality, performance, 
 and user experience of the website meet the specified requirements. The project is integrated 
 with GitHub Actions for automated test runs on every push request.
@@ -8,11 +8,11 @@ Test results are published to Allure Report, and  notifications are sent after e
 test run into Slack to get update on the current status.
 
 ### Project Structure:
-* tests/ - Directory containing test cases.
-* data/ - Directory containing test data.
-* pages/ - Page Object Model (POM) structure for better maintainability.
-* conftest.py - Shared fixtures and hooks for setup and teardown.
-* requirements.txt - List of required packages for the project.
+##### * tests/ - Directory containing test cases.
+##### * data/ - Directory containing test data.
+##### * pages/ - Page Object Model (POM) structure for better maintainability.
+##### * conftest.py - Shared fixtures and hooks for setup and teardown.
+##### * requirements.txt - List of required packages for the project.
 
 ### Steps to set up and run
 
