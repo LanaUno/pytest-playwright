@@ -60,8 +60,8 @@ jobs:
         with:
           PERSONAL_TOKEN: ${{ secrets.PAT_TOKEN }}
           permissions:
-            id-token: write
-            pages: write
+          id-token: write
+          pages: write
 
 #    - name: Get Allure history
 #      uses: actions/checkout@v2
