@@ -4,6 +4,7 @@ import os
 import dotenv
 dotenv.load_dotenv()
 from utils.tools import take_screenshot
+import allure
 
 class HomePage:
 
@@ -20,33 +21,43 @@ class HomePage:
         self.__subscribe_success_msg = self.page.locator('//div[@class="alert-success alert"]')
 
     def navigate(self):
-        self.page.goto(os.getenv("BASE_URL"))
+        with allure.step('Website is opened'):
+            self.page.goto(os.getenv("BASE_URL"))
 
     def check_home_link_visible(self):
-        expect(self.__home_link).to_be_visible()
+        with allure.step('Home page is visible'):
+            expect(self.__home_link).to_be_visible()
         take_screenshot(self.page, "home_link_visible")
 
     def click_signup_login_btn(self):
-        self.__signup_login_btn.click()
+        with allure.step('Click Signup/Login button'):
+            self.__signup_login_btn.click()
 
     def click_contact_us_link(self):
-        self.__contact_us_btn.click()
+        with allure.step('Click Contact us link'):
+            self.__contact_us_btn.click()
 
     def click_test_cases_btn(self):
-        self.__test_cases_btn.click()
+        with allure.step('Click Test Cases button'):
+            self.__test_cases_btn.click()
 
     def click_products_btn(self):
-        self.__products_btn.click()
+        with allure.step('Click Products button'):
+            self.__products_btn.click()
 
     def scroll_down_to_footer(self):
-        self.__footer.click()
+        with allure.step('Scroll down to footer'):
+            self.__footer.click()
 
     def fill_subscribe_email(self):
-        self.__subscribe_email.fill(Data.email)
+        with allure.step('Fill Subscribe textbox with email'):
+            self.__subscribe_email.fill(Data.email)
 
     def click_subscribe_btn(self):
-        self.__subscribe_btn.click()
+        with allure.step('Click Subscribe button'):
+            self.__subscribe_btn.click()
 
     def verify_subscribe_success_msg(self):
-        expect(self.__subscribe_success_msg).to_be_visible()
+        with allure.step('Verify Subscribe success message is visible'):
+            expect(self.__subscribe_success_msg).to_be_visible()
         take_screenshot(self.page, "subscribe_success")

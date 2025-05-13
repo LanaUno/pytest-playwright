@@ -3,7 +3,7 @@ from data.test_data import Data
 import os
 import dotenv
 dotenv.load_dotenv()
-import pytest
+import allure
 from utils.tools import take_screenshot
 
 
@@ -23,28 +23,39 @@ class LoginPage:
         self.__existing_email_error_message = self.page.locator('p[style="color: red;"]')
 
     def verify_new_user_signup_text(self):
-        expect(self.__new_user_sighup_text).to_be_visible()
+        with allure.step('Verify "New User Signup!" text is visible'):
+            expect(self.__new_user_sighup_text).to_be_visible()
         take_screenshot(self.page, "new_user_signup_text")
 
+    @allure.step("Initial Signup random user with name=Data.f_name, email=Data.email,"
+                 "click Signup button" )
     def sign_up(self):
         self.__user_name.fill(Data.f_name)
         self.__user_email.fill(Data.email)
         self.__signup_btn.click()
 
+    @allure.step("Initial Signup real user with name=Data.f_name, email=MY_EMAIL,"
+                 "click Signup button")
     def signup_real_user_init(self):
         self.__user_name.fill(Data.f_name)
         self.__user_email.fill(os.getenv("MY_EMAIL"))
         self.__signup_btn.click()
 
     def verify_user_login_text(self):
-        expect(self.__user_login_text).to_be_visible()
+        with allure.step('Verify "Login to your account" text is visible'):
+            expect(self.__user_login_text).to_be_visible()
         take_screenshot(self.page, "user_login_text")
 
+    @allure.step("Login real user with email=MY_EMAIL, password=MY_PASS,"
+                 "click Login button")
     def login(self):
         self.__login_user_email.fill(os.getenv("MY_EMAIL"))
         self.__login_user_password.fill(os.getenv("MY_PASS"))
         self.__login_btn.click()
 
+    @allure.step("Login user with incorrect credentials:"
+                 "email=email, password=pass,"
+                 "click Login button")
     def login_with_incorrect_cred(self, creds):
         email, passw = creds
         self.__login_user_email.fill(email)
@@ -52,9 +63,11 @@ class LoginPage:
         self.__login_btn.click()
 
     def verify_incorrect_cred_error_message(self):
-        expect(self.__incorrect_cred_error_message).to_be_visible()
+        with allure.step('Verify incorrect credentials error message is visible'):
+            expect(self.__incorrect_cred_error_message).to_be_visible()
         take_screenshot(self.page, "incorrect_cred_error_message")
 
     def verify_existing_email_error_message(self):
-        expect(self.__existing_email_error_message).to_be_visible()
+        with allure.step('Verify existing email error message is visible'):
+            expect(self.__existing_email_error_message).to_be_visible()
         take_screenshot(self.page, "existing_email_error_message")

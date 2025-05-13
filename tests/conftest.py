@@ -1,4 +1,3 @@
-import os
 import dotenv
 dotenv.load_dotenv()
 from playwright.sync_api import Playwright, Page
@@ -14,8 +13,8 @@ def get_webdriver_chrome(playwright: Playwright):
     browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
     page = context.new_page()
-    page.goto(os.getenv("BASE_URL"))
     home_page = HomePage(page)
+    home_page.navigate()
     home_page.check_home_link_visible()
     yield page
     browser.close()

@@ -1,6 +1,7 @@
 from playwright.sync_api import expect, Page
 from data.test_data import Data
 from utils.tools import take_screenshot
+import allure
 
 class ContactUsPage:
 
@@ -18,35 +19,44 @@ class ContactUsPage:
 
 
     def verify_get_in_touch_heading(self):
-        expect(self.__get_in_touch_heading).to_be_visible()
+        with allure.step("Verify Get In Touch heading is visible"):
+            expect(self.__get_in_touch_heading).to_be_visible()
         take_screenshot(self.page, "get_in_touch_heading")
 
     def fill_contactus_name(self):
-        self.__contactus_name.fill(Data.name)
+        with allure.step("Fill name"):
+            self.__contactus_name.fill(Data.name)
 
     def fill_contactus_email(self):
-        self.__contactus_email.fill(Data.email)
+        with allure.step("Fill email"):
+            self.__contactus_email.fill(Data.email)
 
     def fill_contactus_subject(self):
-        self.__contactus_subject.fill(Data.subj)
+        with allure.step("Fill subject"):
+            self.__contactus_subject.fill(Data.subj)
 
     def fill_contactus_message(self):
-        self.__contactus_message.fill(Data.message)
+        with allure.step("Fill message"):
+            self.__contactus_message.fill(Data.message)
 
     def upload_files(self):
-        with self.page.expect_file_chooser() as fc_info:
-            self.page.locator('input[name="upload_file"]').click()
-            file_chooser = fc_info.value
-            file_chooser.set_files("./data/img.jpg")
-            take_screenshot(self.page, "upload_file")
+        with allure.step("Upload file"):
+            with self.page.expect_file_chooser() as fc_info:
+                self.page.locator('input[name="upload_file"]').click()
+                file_chooser = fc_info.value
+                file_chooser.set_files("./data/img.jpg")
+                take_screenshot(self.page, "upload_file")
 
 
     def click_contactus_submit_btn(self):
-        self.__contactus_submit_btn.click()
+        with allure.step("Click Submit button"):
+            self.__contactus_submit_btn.click()
 
     def verify_success_text(self):
-        expect(self.__success_text).to_be_visible()
+        with allure.step("Verify Success text is visible"):
+            expect(self.__success_text).to_be_visible()
         take_screenshot(self.page, "success_text")
 
     def click_success_btn(self):
-        self.__success_btn.click()
+        with allure.step("Click Success button"):
+            self.__success_btn.click()

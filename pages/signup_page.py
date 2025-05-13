@@ -4,7 +4,7 @@ import os
 import dotenv
 dotenv.load_dotenv()
 from utils.tools import take_screenshot
-
+import allure
 
 class SignUpPage:
 
@@ -32,50 +32,60 @@ class SignUpPage:
         self.__continue_btn = self.page.get_by_role("link", name="Continue")
 
     def verify_heading_text_is(self):
-        expect(self.__enter_account_text).to_be_visible()
+        with allure.step('Verify heading text is visible'):
+            expect(self.__enter_account_text).to_be_visible()
         take_screenshot(self.page, "heading_text")
 
     def click_continue_btn(self):
-        self.__continue_btn.click()
+        with allure.step('Click continue button'):
+            self.__continue_btn.click()
 
+    @allure.step("Sign up random user with check gender, fill password, birthday,"
+                 "month, year, check: newsletter, offers, fill: fist name, last name,"
+                 "company, address, country, state, city, zipcode, mobile")
     def user_signup(self):
-            self.__radio_gender.check()
-            self.__your_password.fill(Data.password)
-            self.__day_of_birth.select_option('1')
-            self.__month_of_birth.select_option(Data.month)
-            self.__year_of_birth.select_option('2021')
-            self.__signup_for_newsletter.check()
-            self.__receive_offers.check()
-            self.__first_name.fill(Data.f_name)
-            self.__last_name.fill(Data.l_name)
-            self.__company_name.fill(Data.company)
-            self.__your_address1.fill(Data.address1)
-            self.__your_address2.fill(Data.address2)
-            self.__your_country.select_option(Data.country)
-            self.__your_state.fill(Data.state)
-            self.__your_city.fill(Data.city)
-            self.__your_zipcode.fill(Data.zipcode)
-            self.__your_mobile.fill(Data.mobile)
+        self.__radio_gender.check()
+        self.__your_password.fill(Data.password)
+        self.__day_of_birth.select_option('1')
+        self.__month_of_birth.select_option(Data.month)
+        self.__year_of_birth.select_option('2021')
+        self.__signup_for_newsletter.check()
+        self.__receive_offers.check()
+        self.__first_name.fill(Data.f_name)
+        self.__last_name.fill(Data.l_name)
+        self.__company_name.fill(Data.company)
+        self.__your_address1.fill(Data.address1)
+        self.__your_address2.fill(Data.address2)
+        self.__your_country.select_option(Data.country)
+        self.__your_state.fill(Data.state)
+        self.__your_city.fill(Data.city)
+        self.__your_zipcode.fill(Data.zipcode)
+        self.__your_mobile.fill(Data.mobile)
+        with allure.step("Click create account button"):
             self.__create_account_btn.click()
 
+    @allure.step("Sign up real user with check gender, fill: password, birthday,"
+                 "month, year; check: newsletter, offers; fill: fist name, last name,"
+                 "company, address, country, state, city, zipcode, mobile")
     def real_user_signup(self):
-            self.__radio_gender.check()
-            self.__your_password.fill(os.getenv("MY_PASS"))
-            self.__day_of_birth.select_option('28')
-            self.__month_of_birth.select_option(Data.month)
-            self.__year_of_birth.select_option('1900')
-            self.__signup_for_newsletter.check()
-            self.__receive_offers.check()
-            self.__first_name.fill(Data.f_name)
-            self.__last_name.fill(Data.l_name)
-            self.__company_name.fill(Data.company)
-            self.__your_address1.fill(Data.address1)
-            self.__your_address2.fill(Data.address2)
-            self.__your_country.select_option(Data.country)
-            self.__your_state.fill(Data.state)
-            self.__your_city.fill(Data.city)
-            self.__your_zipcode.fill(Data.zipcode)
-            self.__your_mobile.fill(Data.mobile)
+        self.__radio_gender.check()
+        self.__your_password.fill(os.getenv("MY_PASS"))
+        self.__day_of_birth.select_option('28')
+        self.__month_of_birth.select_option(Data.month)
+        self.__year_of_birth.select_option('1900')
+        self.__signup_for_newsletter.check()
+        self.__receive_offers.check()
+        self.__first_name.fill(Data.f_name)
+        self.__last_name.fill(Data.l_name)
+        self.__company_name.fill(Data.company)
+        self.__your_address1.fill(Data.address1)
+        self.__your_address2.fill(Data.address2)
+        self.__your_country.select_option(Data.country)
+        self.__your_state.fill(Data.state)
+        self.__your_city.fill(Data.city)
+        self.__your_zipcode.fill(Data.zipcode)
+        self.__your_mobile.fill(Data.mobile)
+        with allure.step("Click create account button"):
             self.__create_account_btn.click()
 
 

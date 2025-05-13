@@ -2,6 +2,7 @@ from playwright.sync_api import expect, Page
 from data.test_data import Data
 import re
 from utils.tools import take_screenshot
+import allure
 
 
 class ProductsPage:
@@ -22,47 +23,60 @@ class ProductsPage:
         self.__search_products_list = self.page.locator('div[class="col-sm-4"]>div>div>div>div>h2~p')
 
     def verify_products_heading(self):
-        expect(self.__products_heading ).to_be_visible()
+        with allure.step("Verify Products heading is visible"):
+            expect(self.__products_heading ).to_be_visible()
         take_screenshot(self.page, "verify_products_heading")
 
     def verify_products_list(self):
-        expect(self.__products_list).to_be_visible()
+        with allure.step("Verify Products list is visible"):
+            expect(self.__products_list).to_be_visible()
         take_screenshot(self.page, "products_list")
 
     def click_first_product_view_btn(self):
-        self.__first_product_view_btn.click()
+        with allure.step("Click first product view button"):
+            self.__first_product_view_btn.click()
 
     def verify_first_product_name(self):
-        expect(self.__first_product_name).to_be_visible()
+        with allure.step("Verify first product name is visible"):
+            expect(self.__first_product_name).to_be_visible()
         take_screenshot(self.page, "first_product_name")
 
     def verify_first_product_category(self):
-        expect(self.__first_product_category).to_be_visible()
+        with allure.step("Verify first product category is visible"):
+            expect(self.__first_product_category).to_be_visible()
 
     def verify_first_product_price(self):
-        expect(self.__first_product_price).to_be_visible()
+        with allure.step("Verify first product price is visible"):
+            expect(self.__first_product_price).to_be_visible()
 
     def verify_first_product_availability(self):
-        expect(self.__first_product_availability).to_be_visible()
+        with allure.step("Verify first product availability is visible"):
+            expect(self.__first_product_availability).to_be_visible()
 
     def verify_first_product_condition(self):
-        expect(self.__first_product_condition).to_be_visible()
+        with allure.step("Verify first product condition is visible"):
+            expect(self.__first_product_condition).to_be_visible()
 
     def verify_first_product_brand(self):
-        expect(self.__first_product_brand).to_be_visible()
+        with allure.step("Verify first product brand is visible"):
+            expect(self.__first_product_brand).to_be_visible()
 
     def fill_search_bar(self):
-        self.__search_bar.fill(Data.product_name)
+        with allure.step("Fill search bar with search term"):
+            self.__search_bar.fill(Data.product_name)
 
     def click_search_btn(self):
-        self.__search_btn.click()
+        with allure.step("Click search button"):
+            self.__search_btn.click()
 
     def verify_search_products_heading(self):
-        expect(self.__search_products_heading).to_be_visible()
+        with allure.step("Verify search product heading is visible"):
+            expect(self.__search_products_heading).to_be_visible()
         take_screenshot(self.page, "search_products_heading")
 
     def verify_search_products_list(self):
-        texts = self.__search_products_list.all_inner_texts()
+        with allure.step("Verify search product list contains products relate to the search"):
+            texts = self.__search_products_list.all_inner_texts()
         print(texts)
         found_words = [match.group().lower() for text in texts for match in
                        re.finditer(rf"\b{Data.product_name}\b", text, re.IGNORECASE)]
